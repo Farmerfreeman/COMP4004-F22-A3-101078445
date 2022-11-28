@@ -1,4 +1,4 @@
-package com.example.COMP4004A2;
+package com.example.COMP4004A2.Models;
 
 public class Message {
 

@@ -1,5 +1,7 @@
-package com.example.COMP4004A2;
+package com.example.COMP4004A2.Controllers;
 
+import com.example.COMP4004A2.Models.Message;
+import com.example.COMP4004A2.Models.ServerMessage;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
