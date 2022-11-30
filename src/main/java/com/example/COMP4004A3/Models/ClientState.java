@@ -1,6 +1,9 @@
-package com.example.COMP4004A2.Models;
+package com.example.COMP4004A3.Models;
 
-import com.example.COMP4004A2.Game.*;
+import com.example.COMP4004A3.Game.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +28,15 @@ public class ClientState {
         this.stockPile = stockPile;
         this.discardPile = discardPile;
         this.roundOver = roundOver;
+    }
+
+    public ClientState(){
+        playerTurn = 1;
+        players = new ArrayList<Player>();
+        stockPile = new ArrayList<Card>();
+        discardPile = new ArrayList<Card>();
+        gameOver = false;
+        gameOver = false;
     }
 
     public int getPlayerTurn() {

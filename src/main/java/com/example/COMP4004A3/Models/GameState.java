@@ -1,8 +1,7 @@
-package com.example.COMP4004A2.Models;
+package com.example.COMP4004A3.Models;
 
-import com.example.COMP4004A2.Game.*;
+import com.example.COMP4004A3.Game.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GameState {

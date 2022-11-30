@@ -1,4 +1,4 @@
-package com.example.COMP4004A2;
+package com.example.COMP4004A3;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

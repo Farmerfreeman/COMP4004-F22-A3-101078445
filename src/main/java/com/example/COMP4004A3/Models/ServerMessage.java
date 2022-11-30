@@ -1,4 +1,4 @@
-package com.example.COMP4004A2.Models;
+package com.example.COMP4004A3.Models;
 
 public class ServerMessage {
 
