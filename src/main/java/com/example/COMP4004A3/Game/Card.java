@@ -1,10 +1,12 @@
 package com.example.COMP4004A3.Game;
 
+import com.example.COMP4004A3.Helpers;
+
 public class Card {
 
     public Card(){
-        this.suit = Suit.SPADE;
-        this.rank = 1;
+        this.suit = Helpers.randomEnum(Suit.class);
+        this.rank = Helpers.randomInt(1, 13);
     }
 
     public Card(Suit suit, int rank){

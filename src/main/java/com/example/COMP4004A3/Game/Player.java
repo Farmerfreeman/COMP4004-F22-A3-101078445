@@ -20,4 +20,16 @@ public class Player {
     private List<Card> cards = new ArrayList<>();
 
     private int score;
+
+    public void setCards(List<Card> cards) {
+        this.cards = cards;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

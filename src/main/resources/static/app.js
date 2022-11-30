@@ -22,6 +22,9 @@ function connect() {
         stompClient.subscribe('/topic/greetings', function (message) {
             showGreeting(JSON.parse(message.body));
         });
+        stompClient.subscribe('topic/game'), function (message){
+            showGameState(JSON.parse(message.body))
+        }
     });
 }
 
@@ -40,8 +43,35 @@ function sendMessage() {
     } ));
 }
 
+function sendState(){
+    stompClient.send("/app/game", {}, JSON.stringify({
+        playerTurn: 1,
+        players: [
+            {name: "p1", cards: null, score: 20},
+            {name: "p2", cards: null, score: 10},
+            {name: "p3", cards: null, score: 0},
+            {name: "p4", cards: null, score: 50}
+        ],
+        stockPile: [
+            {suit: "SPADE", rank: 2}
+        ],
+        discardPile: [
+            {suit: "DIAMOND", rank: 11}
+        ],
+        gameOver: false,
+        roundOver: true
+    }));
+}
+
+
+
+
 function showGreeting(message) {
     $("#greetings").append("<tr><td>" + message.time + message.from + ": " + message.content + "</td></tr>");
+}
+
+function showGameState(message){
+    $("#greetings").append("<tr><td> Turn player: " + message.playerTurn + " Players: " + message.players + " Cards: " + message.cards + "</td></tr>");
 }
 
 $(function () {
@@ -51,4 +81,5 @@ $(function () {
     $( "#connect" ).click(function() { connect(); });
     $( "#disconnect" ).click(function() { disconnect(); });
     $( "#send" ).click(function() { sendMessage(); });
+    $( "#sendGame" ).click(function () { sendState(); })
 });
