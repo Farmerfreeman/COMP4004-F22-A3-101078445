@@ -67,7 +67,7 @@ function sendState(){
 
 
 function showGreeting(message) {
-    $("#greetings").append("<tr><td>" + message.time + message.from + ": " + message.content + "</td></tr>");
+    $("#greetings").append("<tr><td class='messages'>" + message.from + ": " + message.content + "</td></tr>");
 }
 
 function showGameState(message){
