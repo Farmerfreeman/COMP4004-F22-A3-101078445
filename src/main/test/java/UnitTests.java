@@ -19,5 +19,23 @@ public class UnitTests {
         assertEquals(52, p.getCards().size());
     }
 
+    @Test
+    @DisplayName("Draw a card from stockpile")
+    void drawFromStock(){
+        stockPile p = new stockPile();
+        Card c = p.drawCard();
+        assertTrue(c.getClass() == Card.class);
+    }
 
+    @Test
+    @DisplayName("Draw a card from stockpile when none are left")
+    void drawFromEmptyStock(){
+        stockPile p = new stockPile();
+        Card c = new Card();
+        for (int i = 0; i<=52; i++){
+            c = p.drawCard();
+        }
+
+        assertEquals(null, c);
+    }
 }
