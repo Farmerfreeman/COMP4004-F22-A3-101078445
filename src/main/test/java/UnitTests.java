@@ -1,7 +1,9 @@
 
 
 import com.example.COMP4004A3.Game.Card;
+import com.example.COMP4004A3.Game.discardPile;
 import com.example.COMP4004A3.Game.stockPile;
+import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -37,5 +39,15 @@ public class UnitTests {
         }
 
         assertEquals(null, c);
+    }
+
+    @Test
+    @DisplayName("Add a card to the Discard Pile")
+    void discardCard(){
+        discardPile p = new discardPile();
+        Card c = new Card();
+        p.addCard(c);
+
+        assertEquals(c, p.getCards().get(0));
     }
 }
