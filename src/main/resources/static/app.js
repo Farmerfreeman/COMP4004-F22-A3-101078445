@@ -1,4 +1,5 @@
-var stompClient = null;
+var socket = null;
+var playerId = null;
 
 function setConnected(connected) {
     $("#connect").prop("disabled", connected);
@@ -13,19 +14,28 @@ function setConnected(connected) {
     $("#greetings").html("");
 }
 
+function setUID(uid) {
+    if (uid != null) {
+        var stripped = uid.replace(/\./g, ' ');
+        document.getElementById('consoleText').innerHTML = 'Console (UID: ' + stripped + ')';
+        playerId = uid;
+    } else {
+        document.getElementById('consoleText').innerHTML = 'Console';
+        playerId = '';
+    }
+}
+
 function connect() {
-    var socket = new SockJS('/gs-guide-websocket');
-    stompClient = Stomp.over(socket);
-    stompClient.connect({}, function (frame) {
+    socket = new SockJS('/game');
+    socket.onopen = function(){
         setConnected(true);
-        console.log('Connected: ' + frame);
-        stompClient.subscribe('/topic/greetings', function (message) {
-            showGreeting(JSON.parse(message.body));
-        });
-        stompClient.subscribe('topic/game'), function (message){
-            showGameState(JSON.parse(message.body))
-        }
-    });
+        clientLog("Connection Opened")
+    };
+    socket.onmessage = function(event){
+        dispatch(event.data);
+    };
+
+
 }
 
 function disconnect() {
@@ -35,43 +45,46 @@ function disconnect() {
     setConnected(false);
     console.log("Disconnected");
 }
-
-function sendMessage() {
-    stompClient.send("/app/hello", {}, JSON.stringify({
-        name: $("#username").val(),
-        content: $("#message").val()
-    } ));
+function dispatch(message){
+    clientLog(message)
 }
 
-function sendState(){
-    stompClient.send("/app/game", {}, JSON.stringify({
-        playerTurn: 1,
-        players: [
-            {name: "p1", cards: null, score: 20},
-            {name: "p2", cards: null, score: 10},
-            {name: "p3", cards: null, score: 0},
-            {name: "p4", cards: null, score: 50}
-        ],
-        stockPile: [
-            {suit: "SPADE", rank: 2}
-        ],
-        discardPile: [
-            {suit: "DIAMOND", rank: 11}
-        ],
-        gameOver: false,
-        roundOver: true
-    }));
+function sendMessage(){
+    socket.send('TEST MESSAGE')
 }
 
 
-
-
-function showGreeting(message) {
-    $("#greetings").append("<tr><td class='messages'>" + message.from + ": " + message.content + "</td></tr>");
+/**
+ * Log from the client.
+ * @param message the message.
+ */
+function clientLog(message) {
+    var pad = '00';
+    var date = new Date();
+    var hour = "" + date.getHours();
+    var hourPad = pad.substring(0, pad.length - hour.length) + hour;
+    var min = "" + date.getMinutes();
+    var minPad = pad.substring(0, pad.length - min.length) + min;
+    var hourMin = hourPad + ':' + minPad;
+    var prefix = '<strong>' + hourMin + ' Client' + '</strong>: ';
+    log(prefix + message);
 }
 
-function showGameState(message){
-    $("#greetings").append("<tr><td> Turn player: " + message.playerTurn + " Players: " + message.players + " Cards: " + message.cards + "</td></tr>");
+/**
+ * Log to the console
+ * @param message the message.
+ */
+function log(message) {
+    var console = document.getElementById('console');
+    var p = document.createElement('p');
+    p.style.wordWrap = 'break-word';
+    p.innerHTML = message;
+
+    console.appendChild(p);
+    while (console.childNodes.length > 25) {
+        console.removeChild(console.firstChild);
+    }
+    console.scrollTop = console.scrollHeight;
 }
 
 $(function () {
@@ -81,5 +94,5 @@ $(function () {
     $( "#connect" ).click(function() { connect(); });
     $( "#disconnect" ).click(function() { disconnect(); });
     $( "#send" ).click(function() { sendMessage(); });
-    $( "#sendGame" ).click(function () { sendState(); })
+
 });

@@ -18,44 +18,27 @@
         <div class="col-md-6">
             <form class="form-inline">
                 <div class="form-group">
-                    <label for="connect">Enter your name:</label>
-                    <input type="text" id="username" class="form-control" placeholder="Name">
                     <button id="connect" class="btn btn-default" type="submit">Connect</button>
                     <button id="disconnect" class="btn btn-default" type="submit" disabled="disabled">Disconnect
                     </button>
                 </div>
             </form>
         </div>
+
         <div class="col-md-6">
             <form class="form-inline">
                 <div class="form-group">
-                    <label for="message">Enter Message:</label>
-                    <input type="text" id="message" class="form-control" placeholder="Your message here...">
+                    <label for="send">Send Test Message:</label>
                 </div>
-                <button id="send" class="btn btn-default" type="submit" disabled="disabled">Send</button>
-            </form>
-        </div>
-        <div class="col-md-6">
-            <form class="form-inline">
-                <div class="form-group">
-                    <label for="message">Send Game State:</label>
-                </div>
-                <button id="sendGame" class="btn btn-default" type="submit">Send</button>
+                <button id="send" class="btn btn-default" type="submit">Send</button>
             </form>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <table id="conversation" class="table table-striped">
-                <thead>
-                <tr>
-                    <th id="greetingHeader">Greetings</th>
-                </tr>
-                </thead>
-                <tbody id="greetings">
-                </tbody>
-            </table>
-        </div>
+    <div id="console-container">
+        <label id="consoleLabel" for="console">Console</label>
+
+        <div id="console"></div>
+
     </div>
 </div>
 </body>
