@@ -9,8 +9,7 @@ public class Player {
 
     private final WebSocketSession session;
 
-    public Player(String name, final WebSocketSession session){
-        this.name = name;
+    public Player(final WebSocketSession session){
         this.session = session;
     }
 
