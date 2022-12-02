@@ -27,7 +27,12 @@ public class stockPile {
 
         shuffle(this.cards);
     }
-
+    public Card drawCard(){
+        if (this.cards.size() >= 1){
+            return this.cards.remove(0);
+        }
+        else return null;
+    }
 
     public List<Card> getCards() {
         return cards;
