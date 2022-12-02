@@ -1,18 +1,17 @@
 package com.example.COMP4004A3.Game;
 
+import org.springframework.web.socket.WebSocketSession;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
 
-    public Player(){
-        this.name = "Temp";
-        this.cards = null;
-        this.score = 0;
-    }
+    private final WebSocketSession session;
 
-    public Player(String name){
+    public Player(String name, final WebSocketSession session){
         this.name = name;
+        this.session = session;
     }
 
     private String name;
@@ -31,5 +30,21 @@ public class Player {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public WebSocketSession getSession() {
+        return session;
+    }
+
+    public List<Card> getCards() {
+        return cards;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public String getName() {
+        return name;
     }
 }
