@@ -1,6 +1,5 @@
 package com.example.COMP4004A3.Game;
 
-import com.example.COMP4004A3.Models.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.messaging.handler.annotation.MessageMapping;

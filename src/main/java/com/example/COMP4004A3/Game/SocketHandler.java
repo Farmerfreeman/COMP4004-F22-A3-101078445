@@ -34,7 +34,9 @@ public class SocketHandler extends TextWebSocketHandler {
 
     @Override
     public void handleTextMessage(final WebSocketSession session, final TextMessage message){
-        System.out.println("Rcd message : " + message);
+        System.out.println(String.format("Received message from %s : %s", session.getId(), message.getPayload()));
+
+
         broadcastMessage(new TextMessage("Got your message! " + message));
     }
 
@@ -45,6 +47,8 @@ public class SocketHandler extends TextWebSocketHandler {
             e.printStackTrace();
         }
     }
+
+
 
     private void broadcastMessage(TextMessage message){
         this.game.getPlayers().stream()
