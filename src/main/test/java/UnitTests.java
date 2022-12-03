@@ -60,6 +60,16 @@ public class UnitTests {
     @Test
     @DisplayName("Play a Card (Player Hand to Discard Pile)")
     void playCard(){
+        Game g = new Game();
+        g.init();
 
+        Player p = new Player("p1");
+        Card c = new Card(Suit.SPADE, 7);
+        p.addCard(c);
+        g.addPlayer(p);
+
+        g.playCard(p, p.getCards().get(0));
+
+        assertEquals(c, g.getDiscardPile().getTopCard());
     }
 }
