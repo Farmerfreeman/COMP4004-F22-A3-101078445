@@ -2,9 +2,9 @@
 <html>
 <head>
     <title>Selenium Crazy Eights - COMP 4004 A3</title>
-    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/main.css" rel="stylesheet">
-    <link href="css/Style.css" rel="stylesheet">
+
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/cards.css" rel="stylesheet">
     <script src="/webjars/jquery/jquery.min.js"></script>
     <script src="/webjars/sockjs-client/sockjs.min.js"></script>
     <script src="/webjars/stomp-websocket/stomp.min.js"></script>
@@ -37,13 +37,43 @@
         </div>
     </div>
     <div id="game-content" class="container">
-        <div id="player1-hand">
-            <ul id="player1-handCards" class="table">
+
+        <label id="discardPileText" for="discardPile">Discard and Stock Piles</label>
+        <div id="discardPile" class="playingCards fourColours">
+            <ul id="discardPileCards" class="table">
                 <li>
-                    <img src="">
+                    <div class="card back">
+                        <span class="rank">7</span>
+                        <span class="suit">&spades;</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="card rank-7 spades">
+                        <span class="rank">7</span>
+                        <span class="suit">&spades;</span>
+                    </div>
                 </li>
             </ul>
         </div>
+
+        <label id="yourHandText" for="playerHand">Your Hand</label>
+        <div id="playerHand" class="playingCards fourColours">
+            <ul id="playerHandCards" class="table">
+                <li>
+                    <div class="card rank-7 spades">
+                        <span class="rank">7</span>
+                        <span class="suit">&spades;</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="card rank-j diams">
+                    </div>
+                </li>
+            </ul>
+
+
+        </div>
+
     </div>
     <div id="console-container">
         <label id="consoleLabel" for="console">Console</label>
