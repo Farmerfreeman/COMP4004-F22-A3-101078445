@@ -1,6 +1,7 @@
 
 
 import com.example.COMP4004A3.Game.*;
+import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -72,4 +73,31 @@ public class UnitTests {
 
         assertEquals(c, g.getDiscardPile().getTopCard());
     }
+
+    @Test
+    @DisplayName("CanPlay() function tests if a card can be played on a given discard pile")
+    void canPLay(){
+        Game g = new Game();
+        g.init();
+
+        Player p = new Player("p1");
+        Card c = new Card(Suit.SPADE, 7);
+        Card c2 = new Card(Suit.SPADE, 11);
+        Card c3 = new Card(Suit.HEART, 3);
+        p.addCard(c);
+        p.addCard(c2);
+        p.addCard(c3);
+
+        assertTrue(g.canPlay(c));
+        g.playCard(p, c);
+
+        assertTrue(g.canPlay(c2));
+        g.playCard(p, c2);
+
+        assertTrue(!g.canPlay(c3));
+        g.playCard(p, c3);
+
+        assertTrue(!p.getCards().isEmpty());
+    }
+
 }
