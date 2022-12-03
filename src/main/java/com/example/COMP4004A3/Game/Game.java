@@ -38,6 +38,8 @@ public class Game {
         this.state = State.CONNECTING;
         this.discardPile = new DiscardPile();
         this.stockPile = new StockPile();
+
+        discardPile.addCard(stockPile.drawCard());
     }
 
     /**
@@ -61,7 +63,22 @@ public class Game {
             System.out.println("Card not played: Player does not posses card.");
             return;
         }
-        discardPile.addCard(player.removeCard(card));
+        if(canPlay(card)){
+            discardPile.addCard(player.removeCard(card));
+        }
+        else{
+            System.out.println("Card not played: Card can't be played on this discard pile.");
+        }
+
+    }
+
+    public boolean canPlay(Card c){
+        if(c.getRank() == 8) return true;
+        if (discardPile.peekTopCard().getSuit().equals(c.getSuit()) ||
+                discardPile.peekTopCard().getRank() == c.getRank()){
+            return true;
+        }
+        else return false;
     }
 
 

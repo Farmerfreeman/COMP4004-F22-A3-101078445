@@ -21,6 +21,8 @@ public class DiscardPile {
 
     public Card getTopCard(){return cards.pop();}
 
+    public Card peekTopCard(){return cards.peek();}
+
     public List<Card> getCards() {
         return cards;
     }
