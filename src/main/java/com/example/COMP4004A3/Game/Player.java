@@ -13,6 +13,10 @@ public class Player {
         this.session = session;
     }
 
+    public Player (String name){
+        this.name = name;
+        this.session = null;
+    }
     private String name;
 
     private List<Card> cards = new ArrayList<>();
