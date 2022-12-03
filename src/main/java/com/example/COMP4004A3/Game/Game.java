@@ -56,6 +56,19 @@ public class Game {
         return this.players.putIfAbsent(session.getId(), new Player(session)) == null;
     }
 
+    public void playCard(Player player, Card card){
+        if(!player.getCards().contains(card)){
+            System.out.println("Card not played: Player does not posses card.");
+            return;
+        }
+        discardPile.addCard(player.removeCard(card));
+    }
+
+
+
+
+    //Networking Functions
+
     /**
      * Get the player for the given session.
      *
@@ -70,6 +83,7 @@ public class Game {
         return this.players.values().stream().collect(Collectors.toList());
     }
 
-
-
+    public DiscardPile getDiscardPile() {
+        return discardPile;
+    }
 }

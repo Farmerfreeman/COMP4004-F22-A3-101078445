@@ -2,21 +2,24 @@ package com.example.COMP4004A3.Game;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
 
 import static java.util.Collections.shuffle;
 
-public class discardPile {
+public class DiscardPile {
 
-    private List<Card> cards;
+    private Stack<Card> cards;
 
-    public discardPile(){
-        cards = new LinkedList<>();
+    public DiscardPile(){
+        cards = new Stack<>();
     }
 
 
     public void addCard(Card c){
-        cards.add(c);
+        cards.push(c);
     }
+
+    public Card getTopCard(){return cards.pop();}
 
     public List<Card> getCards() {
         return cards;

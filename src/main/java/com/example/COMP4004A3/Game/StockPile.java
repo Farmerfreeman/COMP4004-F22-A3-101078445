@@ -1,22 +1,19 @@
 package com.example.COMP4004A3.Game;
 
-import org.apache.commons.io.LineIterator;
-
-import java.nio.channels.Pipe;
 import java.util.LinkedList;
 import java.util.List;
 
 import static java.util.Collections.shuffle;
 
-public class stockPile {
+public class StockPile {
 
     private List<Card> cards;
 
-    public stockPile(){
-        this.initPile();
+    public StockPile(){
+        this.init();
     }
 
-    private void initPile(){
+    private void init(){
         this.cards = new LinkedList<>();
 
         for (final Suit suit : Suit.values()){

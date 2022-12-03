@@ -21,8 +21,22 @@ public class Player {
 
     private List<Card> cards = new ArrayList<>();
 
+
     private int score;
 
+    public void addCard(Card card){
+        cards.add(card);
+    }
+
+    public Card removeCard(Card card){
+        if(cards.contains(card)){
+            cards.remove(card);
+            return card;
+        }
+        else{
+            return null;
+        }
+    }
     public void setCards(List<Card> cards) {
         this.cards = cards;
     }
