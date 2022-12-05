@@ -80,6 +80,10 @@ public class Game {
         else return false;
     }
 
+    public boolean readyToStart(){
+        return this.players.size() == MAX_PLAYERS;
+    }
+
 
 
 
