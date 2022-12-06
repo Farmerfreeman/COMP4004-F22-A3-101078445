@@ -1,4 +1,4 @@
-package config;
+package com.example.COMP4004A3.cucumber.config;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;

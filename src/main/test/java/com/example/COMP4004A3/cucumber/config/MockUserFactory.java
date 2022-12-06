@@ -1,4 +1,4 @@
-package config;
+package com.example.COMP4004A3.cucumber.config;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -18,17 +18,17 @@ public class MockUserFactory {
     {
         WebDriverManager.chromedriver().setup();
     }
-    public WebDriver getSecondUser(final String location) {
+        public WebDriver getSecondUser(final String location) {
         return this.buildNewUser(location);
     }
 
-    private WebDriver buildNewUser(final String location) {
-        final DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setJavascriptEnabled(true);
+        private WebDriver buildNewUser(final String location) {
+            final DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setJavascriptEnabled(true);
 
-        final WebDriver chromeDriver = new ChromeDriver(new ChromeOptions().merge(capabilities));
-        chromeDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
-        chromeDriver.get(location);
-        return chromeDriver;
+            final WebDriver chromeDriver = new ChromeDriver(new ChromeOptions().merge(capabilities));
+            chromeDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+            chromeDriver.get(location);
+            return chromeDriver;
+        }
     }
-}

@@ -1,4 +1,4 @@
-package com.example.cucumber;
+package com.example.COMP4004A3.cucumber;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
