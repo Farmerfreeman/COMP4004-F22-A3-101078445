@@ -2,7 +2,7 @@ var socket = null;
 var playerId = null;
 let cardCount = 0;
 
-let yourTurn = false;
+let yourTurn = true;
 
 function setConnected(connected) {
     $("#connect").prop("disabled", connected);
@@ -94,7 +94,7 @@ function playCard(card){
         cardCount--;
         console.log("Played card " + card)
 
-        socket.send('PLAYED_CARD_' + card)
+        socket.send('PLAYED_CARD|' + card.slice(5))
 
     }
     else {

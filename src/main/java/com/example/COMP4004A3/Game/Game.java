@@ -14,6 +14,8 @@ import java.util.stream.Collectors;
 import com.example.COMP4004A3.MessageUtil;
 import com.example.COMP4004A3.MessageBuilder;
 
+import javax.annotation.PostConstruct;
+
 import static com.example.COMP4004A3.MessageUtil.message;
 
 @Component
@@ -35,9 +37,7 @@ public class Game {
         PLAYING
     }
 
-    public Game(){
-        init();
-    }
+    @PostConstruct
     public void init(){
         this.players = new HashMap<>();
         this.state = State.CONNECTING;

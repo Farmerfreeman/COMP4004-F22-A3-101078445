@@ -57,7 +57,15 @@ public class SocketHandler extends TextWebSocketHandler {
     @Override
     public void handleTextMessage(final WebSocketSession session, final TextMessage message){
         System.out.println(String.format("Received message from %s : %s", session.getId(), message.getPayload()));
+        String[] contents = message.getPayload().split("\\|");
 
+        switch (contents[0]){
+            case "PLAYED_CARD":
+                Player p = game.getPlayerFor(session);
+                Card c = p.getCards().get(Integer.parseInt(contents[1]));
+                game.playCard(p, c);
+                broadcastMessage(session, message(Message.PLAYER_PLAYED_CARD, session.getId(), c).build());
+        }
     }
 
     private void sendMessage(final WebSocketSession user, final TextMessage message){
