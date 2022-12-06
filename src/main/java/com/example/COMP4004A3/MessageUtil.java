@@ -4,7 +4,7 @@ public class MessageUtil {
 
     public enum Message{
         PLAYER_CONNECTED("|CONNECTED|You are now connected with id %s."),
-        OTHER_PLAYER_CONNECTED("|OTHER CONNECTED|%s has connected to the game."),
+        OTHER_PLAYER_CONNECTED("|OTHER_CONNECTED|%s has connected to the game."),
         START_GAME("|START|The game has started! Please wait your turn."),
         ADD_PLAYER_CARD("|ADD_CARD|%s"),
         PLAYER_PLAYED_CARD("|PLAYED_CARD|%s|%s"), //Player, Card

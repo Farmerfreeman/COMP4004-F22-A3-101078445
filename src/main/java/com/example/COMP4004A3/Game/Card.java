@@ -51,4 +51,15 @@ public class Card {
         }
         return "AS";
     }
+
+    public String toHTMLString() {
+        return  String.format("<div class=\"card rank-%s %s\">\n" +
+                        "                        <span class=\"rank\">%s</span>\n" +
+                        "                        <span class=\"suit\">&%s;</span>\n" +
+                        "                    </div>",
+                this.rank,
+                this.suit.getHtml(),
+                this.rank,
+                this.suit.getHtml());
+    }
 }

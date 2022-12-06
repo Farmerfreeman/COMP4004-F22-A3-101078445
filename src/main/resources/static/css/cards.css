@@ -128,10 +128,10 @@
 }
 
 .playingCards.simpleCards .card input,
-.playingCards .card.rank-j input,
-.playingCards .card.rank-q input,
-.playingCards .card.rank-k input,
-.playingCards .card.rank-a input {
+.playingCards .card.rank-11 input,
+.playingCards .card.rank-12 input,
+.playingCards .card.rank-13 input,
+.playingCards .card.rank-1 input {
     margin-top: 2.4em;
 }
 
@@ -347,15 +347,15 @@
 
 /*____________ symbols in the middle (faces as images) ____________*/
 
-.playingCards.faceImages .card.rank-j .suit:after,
-.playingCards.faceImages .card.rank-q .suit:after,
-.playingCards.faceImages .card.rank-k .suit:after {
+.playingCards.faceImages .card.rank-11 .suit:after,
+.playingCards.faceImages .card.rank-12 .suit:after,
+.playingCards.faceImages .card.rank-13 .suit:after {
     content: '';
 }
 
-.playingCards.faceImages .card.rank-j,
-.playingCards.faceImages .card.rank-q,
-.playingCards.faceImages .card.rank-k,
+.playingCards.faceImages .card.rank-11,
+.playingCards.faceImages .card.rank-12,
+.playingCards.faceImages .card.rank-13,
 .playingCards.faceImages .card.joker {
     background-repeat: no-repeat;
     background-position: -1em 0;
@@ -372,70 +372,70 @@
     */
 }
 
-.playingCards .card.rank-j.diams {
+.playingCards .card.rank-11.diams {
     background-image: url(Cards/diamond_jack.png);
     background-size: 3.8em 5.1em;
 }
 
-.playingCards.faceImages .card.rank-j.hearts {
+.playingCards.faceImages .card.rank-11.hearts {
     background-image: url(Cards/heart_jack.png);
     background-size: 3.8em 5.1em;
 }
 
-.playingCards.faceImages .card.rank-j.spades {
+.playingCards.faceImages .card.rank-11.spades {
     background-image: url(Cards/spade_jack.png);
     background-size: 3.8em 5.1em;
 }
 
-.playingCards.faceImages .card.rank-j.clubs {
+.playingCards.faceImages .card.rank-11.clubs {
     background-image: url(Cards/club_jack.png);
     background-size: 3.8em 5.1em;
 }
 
-.playingCards.faceImages .card.rank-q.diams {
+.playingCards.faceImages .card.rank-12.diams {
     background-image: url(Cards/diamond_queen.png);
     background-size: 3.8em 5.1em;
 }
 
-.playingCards.faceImages .card.rank-q.hearts {
+.playingCards.faceImages .card.rank-12.hearts {
     background-image: url(Cards/heart_queen.png);
     background-size: 3.8em 5.1em;
 }
 
-.playingCards.faceImages .card.rank-q.spades {
+.playingCards.faceImages .card.rank-12.spades {
     background-image: url(Cards/spade_queen.png);
     background-size: 3.8em 5.1em;
 }
 
-.playingCards.faceImages .card.rank-q.clubs {
+.playingCards.faceImages .card.rank-12.clubs {
     background-image: url(Cards/club_queen.png);
     background-size: 3.8em 5.1em;
 }
 
-.playingCards.faceImages .card.rank-k.diams {
+.playingCards.faceImages .card.rank-13.diams {
     background-image: url(Cards/diamond_king.png);
     background-size: 3.8em 5.1em;
 }
 
-.playingCards.faceImages .card.rank-k.hearts {
+.playingCards.faceImages .card.rank-13.hearts {
     background-image: url(Cards/heart_king.png);
     background-size: 3.8em 5.1em;
 }
 
-.playingCards.faceImages .card.rank-k.spades {
+.playingCards.faceImages .card.rank-13.spades {
     background-image: url(Cards/spade_king.png);
     background-size: 3.8em 5.1em;
 }
 
-.playingCards.faceImages .card.rank-k.clubs {
+.playingCards.faceImages .card.rank-13.clubs {
     background-image: url(Cards/club_king.png);
     background-size: 3.8em 5.1em;
 }
 
 
-.playingCards.simpleCards .card.rank-j,
-.playingCards.simpleCards .card.rank-q,
-.playingCards.simpleCards .card.rank-k {
+.playingCards.simpleCards .card.rank-11,
+.playingCards.simpleCards .card.rank-12,
+.playingCards.simpleCards .card.rank-13 {
     background-image: none !important;
 }
 
@@ -458,32 +458,32 @@
 
 /* big suits in middle */
 .playingCards.simpleCards .card .suit:after,
-.playingCards .card.rank-a .suit:after {
+.playingCards .card.rank-1 .suit:after {
     font-family: Arial, sans-serif;
     line-height: .9;
     bottom: .35em;
 }
 
 .playingCards.simpleCards .card.diams .suit:after,
-.playingCards .card.rank-a.diams .suit:after {
+.playingCards .card.rank-1.diams .suit:after {
     content: "\2666";
     right: .4em;
 }
 
 .playingCards.simpleCards .card.hearts .suit:after,
-.playingCards .card.rank-a.hearts .suit:after {
+.playingCards .card.rank-1.hearts .suit:after {
     content: "\2665";
     right: .35em;
 }
 
 .playingCards.simpleCards .card.spades .suit:after,
-.playingCards .card.rank-a.spades .suit:after {
+.playingCards .card.rank-1.spades .suit:after {
     content: "\2660";
     right: .35em;
 }
 
 .playingCards.simpleCards .card.clubs .suit:after,
-.playingCards .card.rank-a.clubs .suit:after {
+.playingCards .card.rank-1.clubs .suit:after {
     content: "\2663";
     right: .3em;
 }

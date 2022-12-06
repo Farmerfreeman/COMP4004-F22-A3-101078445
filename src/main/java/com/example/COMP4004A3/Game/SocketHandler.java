@@ -15,7 +15,7 @@ import java.io.IOException;
 public class SocketHandler extends TextWebSocketHandler {
 
     @Autowired
-    private Game game = new Game();
+    private Game game;
 
     private boolean acceptingConnections;
 
@@ -31,11 +31,19 @@ public class SocketHandler extends TextWebSocketHandler {
             if (this.game.readyToStart()){
                 this.acceptingConnections = false;
                 this.broadCastToAllClients(message(Message.START_GAME).build());
+                this.startGame();
             }
         } else{
             this.sendMessage(session, new TextMessage("Not accepting new players."));
             //TODO: Disconnect player session if server is not accepting new players.
         }
+    }
+
+    private void startGame(){
+        this.game.dealHands();
+        this.updateCards();
+
+        //TODO: Start the game for real.
     }
 
     @Override
@@ -51,6 +59,8 @@ public class SocketHandler extends TextWebSocketHandler {
             e.printStackTrace();
         }
     }
+
+
 
 
 

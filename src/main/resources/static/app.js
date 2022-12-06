@@ -4,15 +4,9 @@ var playerId = null;
 function setConnected(connected) {
     $("#connect").prop("disabled", connected);
     $("#disconnect").prop("disabled", !connected);
-    $("#send").prop("disabled", !connected);
-    if (connected) {
-        $("#conversation").show();
-    }
-    else {
-        $("#conversation").hide();
-    }
-    $("#greetings").html("");
 }
+
+
 
 function setUID(uid) {
     if (uid != null) {
@@ -44,11 +38,42 @@ function disconnect() {
     console.log("Disconnected");
 }
 function dispatch(message){
-    clientLog(message)
+    let split = message.split('|');
+    let logMessage = split[0].concat(split[2])
+    console.log(split)
+    switch (split[1]){
+        case 'CONNECTED':
+            log(logMessage)
+            let connectedMessage = logMessage.split(' ');
+            let last = connectedMessage[connectedMessage.length - 1];
+            if (split[1] === 'CONNECTED') {
+                setUID(last);
+            }
+            break;
+        case 'OTHER_CONNECTED':
+            log(logMessage)
+            break;
+        case 'START_GAME':
+            log(logMessage)
+            break;
+        case 'ADD_PLAYER_CARD':
+            addCard(split[2])
+            break;
+    }
 }
 
 function sendMessage(){
     socket.send('TEST MESSAGE')
+}
+
+function testCard(){
+    socket.send('|')
+}
+
+function addCard(card){
+    let li = document.createElement('li')
+    li.innerHTML = card;
+    document.getElementById('playerHandCards').appendChild(li);
 }
 
 
