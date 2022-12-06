@@ -10,6 +10,8 @@ import static com.example.COMP4004A3.MessageUtil.*;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 @Component
 public class SocketHandler extends TextWebSocketHandler {
@@ -44,6 +46,12 @@ public class SocketHandler extends TextWebSocketHandler {
         this.updateCards();
 
         //TODO: Start the game for real.
+    }
+
+    private void updateCards(){
+        Map<Player, List<TextMessage>> messages = game.buildHandMessages();
+        messages.forEach((player, message) ->
+                message.forEach(toSend -> this.sendMessage(player.getSession(), toSend)));
     }
 
     @Override

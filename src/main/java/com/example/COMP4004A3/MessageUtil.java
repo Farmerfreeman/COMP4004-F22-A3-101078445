@@ -7,6 +7,7 @@ public class MessageUtil {
         OTHER_PLAYER_CONNECTED("|OTHER_CONNECTED|%s has connected to the game."),
         START_GAME("|START|The game has started! Please wait your turn."),
         ADD_PLAYER_CARD("|ADD_CARD|%s"),
+        DEALING_CARDS("|DEALING+CARDS|Updated cards."),
         PLAYER_PLAYED_CARD("|PLAYED_CARD|%s|%s"), //Player, Card
         PLAYER_TURN("|PLAYER_TURN|It is your turn! Choose a card to play."),
         CANT_PLAY("|CANT_PLAY|You have no playable cards! You'll have to draw up to three cards until you can play."),

@@ -377,57 +377,57 @@
     background-size: 3.8em 5.1em;
 }
 
-.playingCards.faceImages .card.rank-11.hearts {
+.playingCards .card.rank-11.hearts {
     background-image: url(Cards/heart_jack.png);
     background-size: 3.8em 5.1em;
 }
 
-.playingCards.faceImages .card.rank-11.spades {
+.playingCards .card.rank-11.spades {
     background-image: url(Cards/spade_jack.png);
     background-size: 3.8em 5.1em;
 }
 
-.playingCards.faceImages .card.rank-11.clubs {
+.playingCards .card.rank-11.clubs {
     background-image: url(Cards/club_jack.png);
     background-size: 3.8em 5.1em;
 }
 
-.playingCards.faceImages .card.rank-12.diams {
+.playingCards .card.rank-12.diams {
     background-image: url(Cards/diamond_queen.png);
     background-size: 3.8em 5.1em;
 }
 
-.playingCards.faceImages .card.rank-12.hearts {
+.playingCards .card.rank-12.hearts {
     background-image: url(Cards/heart_queen.png);
     background-size: 3.8em 5.1em;
 }
 
-.playingCards.faceImages .card.rank-12.spades {
+.playingCards .card.rank-12.spades {
     background-image: url(Cards/spade_queen.png);
     background-size: 3.8em 5.1em;
 }
 
-.playingCards.faceImages .card.rank-12.clubs {
+.playingCards .card.rank-12.clubs {
     background-image: url(Cards/club_queen.png);
     background-size: 3.8em 5.1em;
 }
 
-.playingCards.faceImages .card.rank-13.diams {
+.playingCards .card.rank-13.diams {
     background-image: url(Cards/diamond_king.png);
     background-size: 3.8em 5.1em;
 }
 
-.playingCards.faceImages .card.rank-13.hearts {
+.playingCards .card.rank-13.hearts {
     background-image: url(Cards/heart_king.png);
     background-size: 3.8em 5.1em;
 }
 
-.playingCards.faceImages .card.rank-13.spades {
+.playingCards .card.rank-13.spades {
     background-image: url(Cards/spade_king.png);
     background-size: 3.8em 5.1em;
 }
 
-.playingCards.faceImages .card.rank-13.clubs {
+.playingCards .card.rank-13.clubs {
     background-image: url(Cards/club_king.png);
     background-size: 3.8em 5.1em;
 }

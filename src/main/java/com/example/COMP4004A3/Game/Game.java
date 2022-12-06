@@ -5,10 +5,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Component;
+import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 
 import java.util.*;
 import java.util.stream.Collectors;
+
+import com.example.COMP4004A3.MessageUtil;
+import com.example.COMP4004A3.MessageBuilder;
+
+import static com.example.COMP4004A3.MessageUtil.message;
 
 @Component
 public class Game {
@@ -77,10 +83,37 @@ public class Game {
             for (int i = 0; i < 5; i++){
                 Card card = stockPile.drawCard();
                 player.getCards().add(card);
-                System.out.println("Player " + uid + " was dealt card " + card);
             }
         });
     }
+
+    public Map<Player, List<TextMessage>> buildHandMessages(){
+        final Map<Player, List<TextMessage>> messages = new HashMap<>();
+
+
+        for (final Player player : this.getPlayers()) {
+
+            messages.putIfAbsent(player, new ArrayList<>());
+            final List<TextMessage> playerMessages = messages.get(player);
+
+            // Step 0, build the message that we're dealing the cards.
+            playerMessages.add(message(MessageUtil.Message.DEALING_CARDS).build());
+
+            // Step 1, build the messages to send the player their cards.
+            player.getCards()
+                    .forEach(card -> {
+                        playerMessages.add(message(MessageUtil.Message.ADD_PLAYER_CARD,
+                                card.toHTMLString()).build());
+
+                    });
+
+
+
+        }
+        return messages;
+    }
+
+
 
     public boolean canPlay(Card c){
         if(c.getRank() == 8) return true;

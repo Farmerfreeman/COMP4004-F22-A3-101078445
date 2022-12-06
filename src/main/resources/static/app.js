@@ -1,5 +1,8 @@
 var socket = null;
 var playerId = null;
+let cardCount = 0;
+
+let yourTurn = false;
 
 function setConnected(connected) {
     $("#connect").prop("disabled", connected);
@@ -11,10 +14,10 @@ function setConnected(connected) {
 function setUID(uid) {
     if (uid != null) {
         var stripped = uid.replace(/\./g, ' ');
-        document.getElementById('consoleText').innerHTML = 'Console (UID: ' + stripped + ')';
+        document.getElementById('consoleLabel').innerHTML = 'Console (UID: ' + stripped + ')';
         playerId = uid;
     } else {
-        document.getElementById('consoleText').innerHTML = 'Console';
+        document.getElementById('consoleLabel').innerHTML = 'Console';
         playerId = '';
     }
 }
@@ -53,10 +56,10 @@ function dispatch(message){
         case 'OTHER_CONNECTED':
             log(logMessage)
             break;
-        case 'START_GAME':
+        case 'START':
             log(logMessage)
             break;
-        case 'ADD_PLAYER_CARD':
+        case 'ADD_CARD':
             addCard(split[2])
             break;
     }
@@ -73,7 +76,32 @@ function testCard(){
 function addCard(card){
     let li = document.createElement('li')
     li.innerHTML = card;
+    cardCount++;
+    li.id = ("card " + cardCount);
+    li.onclick = function(){playCard(li.id)}
     document.getElementById('playerHandCards').appendChild(li);
+}
+
+function playCard(card){
+    if (yourTurn){
+        let li = document.getElementById(card)
+
+
+        let discard = document.getElementById("discardPileCard")
+        discard.innerHTML = li.innerHTML
+
+        li.remove()
+        cardCount--;
+        console.log("Played card " + card)
+
+        socket.send('PLAYED_CARD_' + card)
+
+    }
+    else {
+        log("It is not your turn!")
+    }
+
+
 }
 
 
