@@ -84,6 +84,9 @@ public class UnitTests {
         Card c = new Card(Suit.SPADE, 8);
         Card c2 = new Card(Suit.SPADE, 11);
         Card c3 = new Card(Suit.HEART, 3);
+
+        g.addPlayer(p);
+
         p.addCard(c);
         p.addCard(c2);
         p.addCard(c3);
@@ -98,6 +101,30 @@ public class UnitTests {
         g.playCard(p, c3);
 
         assertTrue(!p.getCards().isEmpty());
+    }
+
+    @Test
+    @DisplayName("Deals initial hands to all players.")
+    void dealHands(){
+        Game g = new Game();
+
+        Player p = new Player("p1");
+        Player p2 = new Player("p2");
+        Player p3 = new Player("p3");
+        Player p4 = new Player("p4");
+
+        g.addPlayer(p);
+        g.addPlayer(p2);
+        g.addPlayer(p3);
+        g.addPlayer(p4);
+
+        g.dealHands();
+
+        assertEquals(5, p.getCards().size());
+        assertEquals(5, p2.getCards().size());
+        assertEquals(5, p3.getCards().size());
+        assertEquals(5, p4.getCards().size());
+
     }
 
 }
