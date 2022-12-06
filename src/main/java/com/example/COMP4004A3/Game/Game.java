@@ -71,6 +71,17 @@ public class Game {
 
     }
 
+    public void dealHands(){
+        this.state = State.PLAYING;
+        players.forEach((uid, player) ->{
+            for (int i = 0; i < 5; i++){
+                Card card = stockPile.drawCard();
+                player.getCards().add(card);
+                System.out.println("Player " + uid + " was dealt card " + card);
+            }
+        });
+    }
+
     public boolean canPlay(Card c){
         if(c.getRank() == 8) return true;
         if (discardPile.peekTopCard().getSuit().equals(c.getSuit()) ||
