@@ -48,6 +48,9 @@ public class Game {
         this.discardPile = new DiscardPile();
         this.stockPile = new StockPile();
 
+        this.order = new ArrayList<>();
+        this.currPlayer = 0;
+
         discardPile.addCard(stockPile.drawCard());
     }
 
@@ -57,14 +60,19 @@ public class Game {
      * Function adds player to players map, only to be used for non-networked unit testing.
      */
     public void addPlayer(Player p){
+
         players.putIfAbsent(p.getName(), p);
+        order.add(p);
     }
 
     public boolean registerPlayer(final WebSocketSession session){
         if (players.size() == 4){
             return false;
         }
-        return this.players.putIfAbsent(session.getId(), new Player(session)) == null;
+        Player p = new Player(session);
+        order.add(p);
+
+        return this.players.putIfAbsent(session.getId(), p) == null;
     }
 
     public void playCard(Player player, Card card){
@@ -133,6 +141,13 @@ public class Game {
 
     public boolean readyToStart(){
         return this.players.size() == MAX_PLAYERS;
+    }
+
+    public Player getNextPlayer(){
+        if (currPlayer == MAX_PLAYERS){ currPlayer = 0;}
+        Player p = order.get(currPlayer);
+        currPlayer++;
+        return p;
     }
 
 
