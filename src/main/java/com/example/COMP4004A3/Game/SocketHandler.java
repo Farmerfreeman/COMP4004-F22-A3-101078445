@@ -45,6 +45,7 @@ public class SocketHandler extends TextWebSocketHandler {
         this.game.dealHands();
         this.updateCards();
         this.updateDiscard();
+        this.updateTurns();
 
         //TODO: Start the game for real.
     }
@@ -60,6 +61,11 @@ public class SocketHandler extends TextWebSocketHandler {
         broadCastToAllClients(t);
     }
 
+    private void updateTurns(){
+        TextMessage t = game.buildTurnUpdateMessage();
+        broadCastToAllClients(t);
+    }
+
     @Override
     public void handleTextMessage(final WebSocketSession session, final TextMessage message){
         System.out.println(String.format("Received message from %s : %s", session.getId(), message.getPayload()));
@@ -72,6 +78,7 @@ public class SocketHandler extends TextWebSocketHandler {
                 game.playCard(p, c);
                 broadcastMessage(session, message(Message.PLAYER_PLAYED_CARD, session.getId(), c).build());
                 updateDiscard();
+                updateTurns();
         }
 
     }

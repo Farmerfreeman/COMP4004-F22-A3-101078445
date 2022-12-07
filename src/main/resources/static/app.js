@@ -2,7 +2,7 @@ var socket = null;
 var playerId = null;
 let cardCount = 0;
 
-let yourTurn = true;
+let yourTurn = false;
 
 function setConnected(connected) {
     $("#connect").prop("disabled", connected);
@@ -62,6 +62,11 @@ function dispatch(message){
             break;
         case 'DISCARD':
             updateDiscard(split[2])
+            break;
+        case 'PLAYER_TURN':
+            log(logMessage + "'s turn.")
+            updateTurn(split[2])
+            break;
     }
 }
 
@@ -128,6 +133,19 @@ function updateDiscard(card){
     console.log(card)
     console.log(li)
     discard.innerHTML = li.innerHTML
+}
+
+function updateTurn(player){
+    console.log(playerId)
+    if (playerId.slice(0, -1) === player){
+        yourTurn = true
+        log("It is your turn! Choose a card to play. \n If you can't play, click the stock pile to draw.")
+    }
+    else{
+
+        yourTurn = false
+    }
+
 }
 
 

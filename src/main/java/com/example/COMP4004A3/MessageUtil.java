@@ -11,7 +11,7 @@ public class MessageUtil {
         PLAYER_PLAYED_CARD("|PLAYED_CARD|%s|%s"), //Player, Card
         UPDATE_DISCARD("|DISCARD|%s"),
         UPDATE_STOCK("|STOCK|%s"),
-        PLAYER_TURN("|PLAYER_TURN|It is your turn! Choose a card to play."),
+        PLAYER_TURN("|PLAYER_TURN|%s"),
         CANT_PLAY("|CANT_PLAY|You have no playable cards! You'll have to draw up to three cards until you can play."),
         WINNER("|WINNER|%s has won the game!"),
         ROUND_OVER("|ROUND_OVER|That round has concluded. You scored %d points."),

@@ -128,6 +128,11 @@ public class Game {
                 discardPile.peekTopCard().toHTMLString()).build());
     }
 
+    public TextMessage buildTurnUpdateMessage(){
+        return(message(MessageUtil.Message.PLAYER_TURN,
+                this.getNextPlayer().getSession().getId()).build());
+    }
+
 
 
     public boolean canPlay(Card c){
