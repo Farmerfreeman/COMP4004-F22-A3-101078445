@@ -25,6 +25,10 @@ public class Game {
 
     private Map<String, Player> players;
 
+    private List<Player> order;
+
+    private int currPlayer;
+
     private DiscardPile discardPile;
 
     private StockPile stockPile;
@@ -107,10 +111,13 @@ public class Game {
 
                     });
 
-
-
         }
         return messages;
+    }
+
+    public TextMessage buildDiscardUpdateMessage() {
+        return(message(MessageUtil.Message.UPDATE_DISCARD,
+                discardPile.peekTopCard().toHTMLString()).build());
     }
 
 

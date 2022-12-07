@@ -31,8 +31,6 @@ function connect() {
     socket.onmessage = function(event){
         dispatch(event.data);
     };
-
-
 }
 
 function disconnect() {
@@ -62,6 +60,8 @@ function dispatch(message){
         case 'ADD_CARD':
             addCard(split[2])
             break;
+        case 'DISCARD':
+            updateDiscard(split[2])
     }
 }
 
@@ -88,7 +88,23 @@ function playCard(card){
 
 
         let discard = document.getElementById("discardPileCard")
+
+
+        if(discard.firstElementChild.firstElementChild.innerHTML === li.firstElementChild.firstElementChild.innerHTML
+        || discard.firstElementChild.lastElementChild.innerHTML === li.firstElementChild.lastElementChild.innerHTML ||
+        li.firstElementChild.firstElementChild.innerHTML === '8'){
+            log("You played " + li.firstElementChild.firstElementChild.innerHTML + " of " + li.firstElementChild.lastElementChild.innerHTML.slice(0, -1))
+        }
+        else {
+            log("You can't play that card! Click on the stock pile if you need to draw.")
+            return
+        }
+
+
+
+
         discard.innerHTML = li.innerHTML
+
 
         li.remove()
         cardCount--;
@@ -102,6 +118,16 @@ function playCard(card){
     }
 
 
+}
+
+function updateDiscard(card){
+    let discard = document.getElementById("discardPileCard")
+    let li = document.createElement('li')
+    li.innerHTML = card;
+
+    console.log(card)
+    console.log(li)
+    discard.innerHTML = li.innerHTML
 }
 
 
