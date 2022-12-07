@@ -108,6 +108,8 @@ public class UnitTests {
     void dealHands(){
         Game g = new Game();
 
+        g.init();
+
         Player p = new Player("p1");
         Player p2 = new Player("p2");
         Player p3 = new Player("p3");
@@ -125,6 +127,30 @@ public class UnitTests {
         assertEquals(5, p3.getCards().size());
         assertEquals(5, p4.getCards().size());
 
+    }
+
+    @Test
+    @DisplayName("initialize player order and get all four players in the order they were added")
+    void initOrdering(){
+        Game g = new Game();
+
+        g.init();
+
+        Player p = new Player("p1");
+        Player p2 = new Player("p2");
+        Player p3 = new Player("p3");
+        Player p4 = new Player("p4");
+
+        g.addPlayer(p2);
+        g.addPlayer(p4);
+        g.addPlayer(p3);
+        g.addPlayer(p);
+
+        assertEquals(p2, g.getNextPlayer());
+        assertEquals(p4, g.getNextPlayer());
+        assertEquals(p3, g.getNextPlayer());
+        assertEquals(p, g.getNextPlayer());
+        assertEquals(p2, g.getNextPlayer());
     }
 
 }
