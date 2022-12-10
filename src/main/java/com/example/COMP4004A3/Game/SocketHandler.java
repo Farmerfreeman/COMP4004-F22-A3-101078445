@@ -121,6 +121,7 @@ public class SocketHandler extends TextWebSocketHandler {
             case "ROUND_OVER":
                 this.game.endRound();
                 this.updatePoints();
+                this.updateCards();
                  for (Player player : game.getPlayers()){
                     if (player.getScore() >= 100){
                         this.gameOver();
