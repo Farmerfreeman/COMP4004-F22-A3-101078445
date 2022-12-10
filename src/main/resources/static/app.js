@@ -67,6 +67,12 @@ function dispatch(message){
             log(logMessage + "'s turn.")
             updateTurn(split[2])
             break;
+        case 'PLAYER_SCORED':
+            log("Player " + split[2] + " scored " + split[3])
+            updateScore(split[2], split[3])
+        case 'ROUND_OVER:':
+
+
     }
 }
 
@@ -74,9 +80,6 @@ function sendMessage(){
     socket.send('TEST MESSAGE')
 }
 
-function testCard(){
-    socket.send('|')
-}
 
 function addCard(card){
     let li = document.createElement('li')
@@ -85,6 +88,8 @@ function addCard(card){
     li.id = ("card " + cardCount);
     li.onclick = function(){playCard(li.id)}
     document.getElementById('playerHandCards').appendChild(li);
+    document.getElementById("numCards").innerHTML=cardCount.toString()
+
 }
 
 function playCard(card){
@@ -116,12 +121,31 @@ function playCard(card){
         console.log("Played card " + card)
 
         socket.send('PLAYED_CARD|' + card.slice(5))
+        document.getElementById("numCards").innerHTML=cardCount.toString()
+
+        updateCards()
+
+        if (cardCount === 0){
+            socket.send('ROUND_OVER')
+        }
+
+
 
     }
     else {
         log("It is not your turn!")
     }
 
+
+}
+
+function drawCard(){
+    if(yourTurn){
+        socket.send('DREW_CARD')
+    }
+    else {
+        log("It is not your turn!")
+    }
 
 }
 
@@ -146,6 +170,19 @@ function updateTurn(player){
         yourTurn = false
     }
 
+}
+
+function updateScore(player, score){
+    console.log("PLayer: " + player)
+    console.log("Scored: " + score)
+
+}
+
+function updateCards(){
+    let cards = document.getElementById("playerHandCards").children
+    for (let i = 0; i < cardCount; i++){
+        cards[i].id = ("card " + (i + 1));
+    }
 }
 
 

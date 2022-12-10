@@ -41,7 +41,7 @@
         <label id="discardPileText" for="discardPile">Discard and Stock Piles</label>
         <div id="discardPile" class="playingCards fourColours">
             <ul id="discardPileCards" class="table">
-                <li id="stockPileCard">
+                <li id="stockPileCard" onclick="drawCard()">
                     <div  class="card back">
                         <span class="rank">7</span>
                         <span class="suit">&spades;</span>
@@ -57,6 +57,7 @@
         </div>
 
         <label id="yourHandText" for="playerHand">Your Hand</label>
+        <span id="numCards">0</span>
         <div id="playerHand" class="playingCards fourColours">
             <ul id="playerHandCards" class="table">
 
