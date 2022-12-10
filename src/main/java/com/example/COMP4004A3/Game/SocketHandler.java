@@ -1,5 +1,6 @@
 package com.example.COMP4004A3.Game;
 
+import com.example.COMP4004A3.MessageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.TextMessage;
@@ -76,6 +77,7 @@ public class SocketHandler extends TextWebSocketHandler {
     }
 
     private void updatePoints(){
+        broadCastToAllClients(message(MessageUtil.Message.ROUND_OVER).build());
         Map<Player, List<TextMessage>> messages = game.buildPointMessages();
         messages.forEach((player, message) ->
                 message.forEach(toSend -> this.broadCastToAllClients(toSend)));
@@ -112,6 +114,7 @@ public class SocketHandler extends TextWebSocketHandler {
                     }
                     if(!canPlay){
                         sendMessage(session, message(Message.CANT_PLAY).build());
+                        p.consecutiveDraws = 0;
                         updateTurns();
                     }
 

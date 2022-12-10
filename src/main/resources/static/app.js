@@ -74,7 +74,7 @@ function dispatch(message){
             log(split[0] + "Player " + split[2] + " scored " + split[3])
             updateScore(split[2], split[3])
             break;
-        case 'ROUND_OVER:':
+        case 'ROUND_OVER':
             log(logMessage)
             emptyHand()
             break;

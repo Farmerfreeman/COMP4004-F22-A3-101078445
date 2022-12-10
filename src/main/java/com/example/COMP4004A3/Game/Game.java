@@ -132,7 +132,7 @@ public class Game {
             messages.putIfAbsent(player, new ArrayList<>());
             final List<TextMessage> playerMessages = messages.get(player);
 
-            playerMessages.add(message(MessageUtil.Message.ROUND_OVER).build());
+
             playerMessages.add(message(MessageUtil.Message.PLAYER_SCORED,
                     player.getSession().getId(), player.getScore()).build());
 
@@ -176,9 +176,9 @@ public class Game {
     }
 
     public void endRound(){
-        for (Player p : this.getPlayers()){
-            p.tallyScore();
-            p.setCards(new ArrayList<Card>());
+        for (Map.Entry<String, Player> p : players.entrySet()){
+            p.getValue().tallyScore();
+            p.getValue().setCards(new ArrayList<Card>());
         }
 
         this.discardPile = new DiscardPile();
