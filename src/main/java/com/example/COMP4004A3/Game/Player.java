@@ -21,7 +21,7 @@ public class Player {
 
     private List<Card> cards = new ArrayList<>();
 
-
+    public int consecutiveDraws = 0;
     private int score;
 
     public void addCard(Card card){

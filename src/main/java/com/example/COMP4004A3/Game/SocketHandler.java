@@ -94,15 +94,29 @@ public class SocketHandler extends TextWebSocketHandler {
                 game.playCard(p, c);
                 broadcastMessage(session, message(Message.PLAYER_PLAYED_CARD, session.getId(), c).build());
                 updateDiscard();
-                //TODO: This shouldn't update turns forever, sometimes you can play multiple times.
                 updateTurns();
+                p.consecutiveDraws = 0;
                 break;
             case "DREW_CARD":
-                Card drawCard = game.getStockPile().drawCard();
-                p.addCard(drawCard);
-                this.addCardToClient(p, drawCard);
-                //TODO: This shouldn't update turns forever, sometimes you can draw multiple times.
-                updateTurns();
+                if (p.consecutiveDraws < 3){
+                    Card drawCard = game.getStockPile().drawCard();
+                    p.addCard(drawCard);
+                    this.addCardToClient(p, drawCard);
+                    p.consecutiveDraws++;
+                }
+                else{
+                    boolean canPlay = false;
+                    for (Card x : p.getCards()){
+                        if (game.canPlay(x)) {canPlay = true;}
+
+                    }
+                    if(!canPlay){
+                        sendMessage(session, message(Message.CANT_PLAY).build());
+                        updateTurns();
+                    }
+
+                }
+
                 break;
             case "ROUND_OVER":
                 this.game.endRound();

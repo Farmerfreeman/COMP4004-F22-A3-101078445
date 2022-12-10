@@ -84,6 +84,9 @@ function dispatch(message){
         case "GAME_OVER":
             log(logMessage)
             break;
+        case 'CANT_PLAY':
+            log(logMessage)
+            break;
 
     }
 }

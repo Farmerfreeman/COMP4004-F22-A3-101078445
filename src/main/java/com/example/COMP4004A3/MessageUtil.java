@@ -12,12 +12,12 @@ public class MessageUtil {
         UPDATE_DISCARD("|DISCARD|%s"),
         UPDATE_STOCK("|STOCK|%s"),
         PLAYER_TURN("|PLAYER_TURN|%s"),
-        CANT_PLAY("|CANT_PLAY|You have no playable cards! You'll have to draw up to three cards until you can play."),
         WINNER("|WINNER|%s has won the game!"),
         ROUND_OVER("|ROUND_OVER|That round has concluded."),
         PLAYER_SCORED("|PLAYER_SCORED|%s|%d"), //player, score
         RESET("|RESET|A new round is beginning."),
-        GAME_OVER("|GAME_OVER|The game is over, sessions will now be disconnected.");
+        GAME_OVER("|GAME_OVER|The game is over, sessions will now be disconnected."),
+        CANT_PLAY("|CANT_PLAY|You have drawn three times and still can't play. Your turn is over.");
         private final String content;
 
         Message(String content){
