@@ -37,6 +37,24 @@ public class Player {
             return null;
         }
     }
+
+    public void tallyScore(){
+        for (Card c : cards){
+            switch (c.getRank()){
+                case 8:
+                    score += 50;
+                    break;
+                case 13:
+                case 12:
+                case 11:
+                    score += 10;
+                    break;
+                default:
+                    score += c.getRank();
+            }
+        }
+    }
+
     public void setCards(List<Card> cards) {
         this.cards = cards;
     }

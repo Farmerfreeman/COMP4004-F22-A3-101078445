@@ -50,6 +50,10 @@ public class SocketHandler extends TextWebSocketHandler {
         //TODO: Start the game for real.
     }
 
+    private void addCardToClient(Player p, Card c){
+        sendMessage(p.getSession(), message(Message.ADD_PLAYER_CARD, c.toHTMLString()).build());
+    }
+
     private void updateCards(){
         Map<Player, List<TextMessage>> messages = game.buildHandMessages();
         messages.forEach((player, message) ->
@@ -66,19 +70,40 @@ public class SocketHandler extends TextWebSocketHandler {
         broadCastToAllClients(t);
     }
 
+    private void updatePoints(){
+        Map<Player, List<TextMessage>> messages = game.buildPointMessages();
+        messages.forEach((player, message) ->
+                message.forEach(toSend -> this.broadCastToAllClients(toSend)));
+    }
+
     @Override
     public void handleTextMessage(final WebSocketSession session, final TextMessage message){
         System.out.println(String.format("Received message from %s : %s", session.getId(), message.getPayload()));
         String[] contents = message.getPayload().split("\\|");
+        Player p = game.getPlayerFor(session);
 
         switch (contents[0]){
             case "PLAYED_CARD":
-                Player p = game.getPlayerFor(session);
+
                 Card c = p.getCards().get(Integer.parseInt(contents[1]) - 1);
                 game.playCard(p, c);
                 broadcastMessage(session, message(Message.PLAYER_PLAYED_CARD, session.getId(), c).build());
                 updateDiscard();
+                //TODO: This shouldn't update turns forever, sometimes you can play multiple times.
                 updateTurns();
+                break;
+            case "DREW_CARD":
+                Card drawCard = game.getStockPile().drawCard();
+                p.addCard(drawCard);
+                this.addCardToClient(p, drawCard);
+                //TODO: This shouldn't update turns forever, sometimes you can draw multiple times.
+                updateTurns();
+                break;
+            case "ROUND_OVER":
+                this.game.endRound();
+                this.updatePoints();
+                this.startGame();
+
         }
 
     }

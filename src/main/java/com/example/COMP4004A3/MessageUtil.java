@@ -15,7 +15,7 @@ public class MessageUtil {
         CANT_PLAY("|CANT_PLAY|You have no playable cards! You'll have to draw up to three cards until you can play."),
         WINNER("|WINNER|%s has won the game!"),
         ROUND_OVER("|ROUND_OVER|That round has concluded. You scored %d points."),
-        OTHER_SCORED("|PLAYER_SCORE|%s|%d"), //player, score
+        PLAYER_SCORED("|PLAYER_SCORED|%s|%d"), //player, score
         RESET("|RESET|A new round is beginning."),
         GAME_OVER("|GAME_OVER|The game is over, sessions will now be disconnected.");
         private final String content;

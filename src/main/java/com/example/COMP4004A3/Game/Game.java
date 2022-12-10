@@ -123,6 +123,25 @@ public class Game {
         return messages;
     }
 
+    public Map<Player, List<TextMessage>> buildPointMessages(){
+        final Map<Player, List<TextMessage>> messages = new HashMap<>();
+
+
+        for (final Player player : this.getPlayers()) {
+
+            messages.putIfAbsent(player, new ArrayList<>());
+            final List<TextMessage> playerMessages = messages.get(player);
+
+
+            playerMessages.add(message(MessageUtil.Message.PLAYER_SCORED,
+                    player.getSession().getId(), player.getScore()).build());
+
+
+
+        }
+        return messages;
+    }
+
     public TextMessage buildDiscardUpdateMessage() {
         return(message(MessageUtil.Message.UPDATE_DISCARD,
                 discardPile.peekTopCard().toHTMLString()).build());
@@ -132,6 +151,7 @@ public class Game {
         return(message(MessageUtil.Message.PLAYER_TURN,
                 this.getNextPlayer().getSession().getId()).build());
     }
+
 
 
 
@@ -155,6 +175,21 @@ public class Game {
         return p;
     }
 
+    public void endRound(){
+        for (Player p : this.getPlayers()){
+            p.tallyScore();
+            p.setCards(new ArrayList<Card>());
+        }
+
+        this.discardPile = new DiscardPile();
+        this.stockPile = new StockPile();
+
+        this.currPlayer = 0;
+
+        discardPile.addCard(stockPile.drawCard());
+
+    }
+
 
 
 
@@ -176,5 +211,9 @@ public class Game {
 
     public DiscardPile getDiscardPile() {
         return discardPile;
+    }
+
+    public StockPile getStockPile(){
+        return stockPile;
     }
 }
