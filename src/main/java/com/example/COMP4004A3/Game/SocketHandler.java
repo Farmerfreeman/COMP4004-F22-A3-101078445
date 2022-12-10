@@ -28,7 +28,7 @@ public class SocketHandler extends TextWebSocketHandler {
     public void afterConnectionEstablished(final WebSocketSession session) throws Exception{
         if (this.game.registerPlayer(session)){
             this.sendMessage(session, message(Message.PLAYER_CONNECTED, session.getId()).build());
-            this.broadcastMessage(session, message(Message.OTHER_PLAYER_CONNECTED, session.getId()).build());
+            this.broadcastMessage(session, message(Message.OTHER_PLAYER_CONNECTED, session.getId(), session.getId()).build());
 
             if (this.game.readyToStart()){
                 this.acceptingConnections = false;
@@ -48,6 +48,11 @@ public class SocketHandler extends TextWebSocketHandler {
         this.updateTurns();
 
         //TODO: Start the game for real.
+    }
+
+    private void gameOver(){
+        broadCastToAllClients(message(Message.WINNER, game.getWinner().getSession().getId()).build());
+        broadCastToAllClients(message(Message.GAME_OVER).build());
     }
 
     private void addCardToClient(Player p, Card c){
@@ -102,6 +107,12 @@ public class SocketHandler extends TextWebSocketHandler {
             case "ROUND_OVER":
                 this.game.endRound();
                 this.updatePoints();
+                 for (Player player : game.getPlayers()){
+                    if (player.getScore() >= 100){
+                        this.gameOver();
+                        return;
+                    }
+            }
                 this.startGame();
 
         }

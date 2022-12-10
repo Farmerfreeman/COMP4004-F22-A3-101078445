@@ -132,7 +132,7 @@ public class Game {
             messages.putIfAbsent(player, new ArrayList<>());
             final List<TextMessage> playerMessages = messages.get(player);
 
-
+            playerMessages.add(message(MessageUtil.Message.ROUND_OVER).build());
             playerMessages.add(message(MessageUtil.Message.PLAYER_SCORED,
                     player.getSession().getId(), player.getScore()).build());
 
@@ -188,6 +188,17 @@ public class Game {
 
         discardPile.addCard(stockPile.drawCard());
 
+    }
+
+    public Player getWinner(){
+        Player lowest =new Player("temp");
+        lowest.setScore(9999);
+        for (Player p : getPlayers()){
+            if (p.getScore() < lowest.getScore()){
+                lowest = p;
+            }
+        }
+        return lowest;
     }
 
 
