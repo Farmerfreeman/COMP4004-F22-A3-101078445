@@ -2,6 +2,7 @@ var socket = null;
 var playerId = null;
 let cardCount = 0;
 
+let score = 0;
 let yourTurn = false;
 
 function setConnected(connected) {
@@ -50,8 +51,10 @@ function dispatch(message){
             if (split[1] === 'CONNECTED') {
                 setUID(last);
             }
+            addToScoreBoard(last.slice(0, -1));
             break;
         case 'OTHER_CONNECTED':
+            addToScoreBoard(split[3])
             log(logMessage)
             break;
         case 'START':
@@ -68,10 +71,19 @@ function dispatch(message){
             updateTurn(split[2])
             break;
         case 'PLAYER_SCORED':
-            log("Player " + split[2] + " scored " + split[3])
+            log(split[0] + "Player " + split[2] + " scored " + split[3])
             updateScore(split[2], split[3])
+            break;
         case 'ROUND_OVER:':
-
+            log(logMessage)
+            emptyHand()
+            break;
+        case 'WINNER':
+            log(logMessage)
+            break;
+        case "GAME_OVER":
+            log(logMessage)
+            break;
 
     }
 }
@@ -139,6 +151,10 @@ function playCard(card){
 
 }
 
+function emptyHand(){
+    document.getElementById("playerHandCards").innerHTML = '';
+}
+
 function drawCard(){
     if(yourTurn){
         socket.send('DREW_CARD')
@@ -172,10 +188,10 @@ function updateTurn(player){
 
 }
 
-function updateScore(player, score){
+function updateScore(player, Pscore){
     console.log("PLayer: " + player)
-    console.log("Scored: " + score)
-
+    score = Pscore
+    updateScoreBoard(player, Pscore)
 }
 
 function updateCards(){
@@ -183,6 +199,19 @@ function updateCards(){
     for (let i = 0; i < cardCount; i++){
         cards[i].id = ("card " + (i + 1));
     }
+}
+
+function addToScoreBoard(id){
+    let li = document.createElement('li')
+    li.innerHTML = id + " " + 0
+    li.id = "score" + id
+
+    document.getElementById("scores").appendChild(li)
+}
+
+function updateScoreBoard(id, Pscore){
+    let li = document.getElementById("score" + id)
+    li.innerHTML = id + " " + Pscore;
 }
 
 
