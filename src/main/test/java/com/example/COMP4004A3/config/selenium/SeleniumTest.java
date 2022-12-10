@@ -1,7 +1,7 @@
-package com.example.COMP4004A3.cucumber.config.selenium;
+package com.example.COMP4004A3.config.selenium;
 
-import com.example.COMP4004A3.cucumber.config.selenium.page.IndexPage;
-import com.example.COMP4004A3.cucumber.config.MockUserFactory;
+import com.example.COMP4004A3.config.selenium.page.IndexPage;
+import com.example.COMP4004A3.config.MockUserFactory;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.By;

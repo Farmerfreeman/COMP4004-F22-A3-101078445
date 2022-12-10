@@ -1,4 +1,4 @@
-package com.example.COMP4004A3.cucumber.config.selenium.page;
+package com.example.COMP4004A3.config.selenium.page;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;

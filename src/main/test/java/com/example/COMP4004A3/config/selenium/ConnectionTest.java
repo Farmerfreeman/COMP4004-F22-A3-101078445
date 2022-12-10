@@ -1,10 +1,12 @@
-package com.example.COMP4004A3.cucumber.config.selenium;
+package com.example.COMP4004A3.config.selenium;
 
+import com.example.COMP4004A3.Game.Game;
+import org.hamcrest.MatcherAssert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.springframework.boot.actuate.autoconfigure.metrics.MetricsProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
@@ -13,11 +15,15 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertTrue;
 
 public class ConnectionTest extends SeleniumTest {
+
+
+
+
     @Test
     public void canConnect(){
         this.indexPage.connect();
-        assertThat(this.indexPage.hasText("Connection Opened"), is(true));
-        assertThat(this.indexPage.hasText("You are now connected with id"), is(true));
+        MatcherAssert.assertThat(this.indexPage.hasText("Connection Opened"), is(true));
+        MatcherAssert.assertThat(this.indexPage.hasText("You are now connected with id"), is(true));
     }
 
     @Test
@@ -51,4 +57,5 @@ public class ConnectionTest extends SeleniumTest {
 
         assertTrue(consoleText.contains("The game has started! Please wait your turn"));
     }
+
 }
